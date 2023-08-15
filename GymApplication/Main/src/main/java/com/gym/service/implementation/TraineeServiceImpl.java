@@ -73,7 +73,7 @@ public class TraineeServiceImpl implements TraineeService {
 				.orElseThrow(() -> new TraineeException("No trainee found with userName = "+userName));
 		List<Trainer> trainers = trainee.getTrainers();
 		List<TrainerProfile> trainerprofile = new ArrayList<>();
-		log.info("retrieved trainee from username {}", trainee);
+		log.info("retrieved trainee ");
 		trainers.stream().forEach(tr -> {
 			User trainerUser = userRepository.findById(tr.getUser().getId()).get();
 //					.orElseThrow(() -> new UserException("No such User found"));
@@ -131,7 +131,7 @@ public class TraineeServiceImpl implements TraineeService {
 	public void deleteByUserName(String userName) throws TraineeException {
 		Trainee trainee = Optional.ofNullable(traineeRepository.findByUserUserName(userName))
 				.orElseThrow(() -> new TraineeException("No such trainee found"));
-		log.info("trainee obtained {}", trainee.getId());
+		log.info("trainee obtained");
 		trainingRepository.deleteByTraineeId(trainee.getId());
 		log.info("training repository cleared");
 		trainee.getTrainers().stream().forEach(trainer -> {

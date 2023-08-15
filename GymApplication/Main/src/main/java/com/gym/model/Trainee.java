@@ -39,4 +39,9 @@ public class Trainee {
 	@OneToOne
 	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
+
+	@Override
+	public String toString(){
+		return user.getUserName();
+	}
 }
